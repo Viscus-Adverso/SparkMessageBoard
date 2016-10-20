@@ -33,10 +33,14 @@ public class Main {
                 "/login",
                 (request, response) -> {
                     String name = request.queryParams("loginName");
+                    String password = request.queryParams("loginPassword");
                     User user = users.get(name);
                     if (user == null) {
-                        user = new User();
+                        user = new User(name, password);
                         users.put(name, user);
+                    }
+                    else if (!password.equals(user.userPass)){
+                        return null;
                     }
                     Session session = request.session();
                     session.attribute("Loginname", name);
@@ -69,5 +73,28 @@ public class Main {
 
         );
 
+        Spark.post(
+                "/delete-message",
+                (request, response) -> {
+                    String delete = request.queryParams("deleteMessage");
+                    int deleteNum = Integer.valueOf(delete);
+                    mgs.remove(deleteNum -1);
+                    response.redirect("/");
+                    return null;
+                }
+        );
+
+        Spark.post(
+                "/edit-message",
+                (request, response) -> {
+                    String editn = request.queryParams("editMessageNum");
+                    int editNum = Integer.valueOf(editn);
+                    String edit = request.queryParams("editMessage");
+                    Message m2 =mgs.get(editNum -1);
+                    m2.text = edit;
+                    response.redirect("/");
+                    return null;
+                }
+        );
     }
 }

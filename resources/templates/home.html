@@ -8,8 +8,10 @@
 {{^name}}
 <form action="/login" method="post">
     <input type="text" placeholder="Enter your name" name="loginName"/>
+    <input type="password" placeholder="Enter your password" name="loginPassword"/>
     <button type="submit">Login</button>
 </form>
+
 {{/name}}
 
 {{#name}}
@@ -21,6 +23,17 @@ Hello, {{name}}
 <form action="/create-message"  method="post">
     <input type="text"  placeholder="Enter your message." name="createMessage">
     <button type="submit">Create message</button>
+</form>
+
+<form action="/delete-message" method="post">
+    <input type="text" placeholder="enter message #" name="deleteMessage">
+    <button type="submit">Delete message</button>
+</form>
+
+<form action="/edit-message" method="post">
+    <input type="text" placeholder="enter message #" name="editMessageNum">
+    <input type="text"  placeholder="enter edited message" name="editMessage">
+    <button type="submit">Edit</button>
 </form>
 
 {{/name}}

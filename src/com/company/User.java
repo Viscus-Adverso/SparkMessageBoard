@@ -5,13 +5,14 @@ package com.company;
  */
 public class User {
     String userName;
+    String userPass;
 
     public User() {
     }
 
-    public User(String userName) {
+    public User(String userName, String userPass) {
         this.userName = userName;
-
+        this.userPass = userPass;
     }
 
     public String getUserName() {
@@ -22,4 +23,11 @@ public class User {
         this.userName = userName;
     }
 
+    public String getUserPass() {
+        return userPass;
+    }
+
+    public void setUserPass(String userPass) {
+        this.userPass = userPass;
+    }
 }
